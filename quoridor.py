@@ -27,8 +27,7 @@ class Quoridor:
         self.jeu = jeu
     
     def __str__(self):
-        jeu = self.jeu
-        nom = [jeu['joueurs'][0]['nom'], jeu['joueurs'][1]['nom']]
+        nom = [self.jeu['joueurs'][0]['nom'], self.jeu['joueurs'][1]['nom']]
         table = []
         let = [['  |', '    ', '    ', '    ', '    ', '    ', '    ', '    ', '    ', '   |'],
                ['  |', '    ', '    ', '    ', '    ', '    ', '    ', '    ', '    ', '   |'],
@@ -45,16 +44,16 @@ class Quoridor:
                           [' ', '.', ' ', ' '], [' ', '.', ' ', ' '],
                           [' ', '.', ' ', ' '], [' ', '.', ' ', ' '], [' ', '.', ' ']])
         nj = 1
-        for joueur in jeu['joueurs']:
+        for joueur in self.jeu['joueurs']:
             table[joueur['pos'][1] - 1][joueur['pos'][0] - 1][1] = str(nj)
             nj += 1
-        for mur in jeu['murs']['horizontaux']:
+        for mur in self.jeu['murs']['horizontaux']:
             let[mur[1] - 1][mur[0]] = '----'
             let[mur[1] - 1][mur[0] + 1] = '--- '
             if mur[0] == 8:
                 let[mur[1] - 1][mur[0]] = '----'
                 let[mur[1] - 1][mur[0] + 1] = '---|'
-        for m in jeu['murs']['verticaux']:
+        for m in self.jeu['murs']['verticaux']:
             table[m[1] - 1][m[0] - 2][3] = '|'
             table[m[1]][m[0] - 2][3] = '|'
             if let[m[1]][m[0] - 1] == '--- ':
@@ -76,7 +75,9 @@ class Quoridor:
         damier += '\n' + '  | 1   2   3   4   5   6   7   8   9'
         return damier
 
-    #def déplacer_jeton(self, joueur, position):
+    def déplacer_jeton(self, joueur, position):
+        if position not in [1, 2]:
+            self.joueur[joeur] = position
        
     #def état_partie(self):
 
